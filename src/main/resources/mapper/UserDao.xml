@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.most.esp.user.dao.UserDao">
+	<resultMap id="BaseResultMap"
+		type="cn.most.esp.user.entity.UserInfo">
+		<result column="ID" jdbcType="INTEGER" property="id" />
+		<result column="LoginName" jdbcType="VARCHAR"
+			property="loginname" />
+		<result column="LoginPwd" jdbcType="VARCHAR"
+			property="loginpwd" />
+		<result column="userpwdkey" jdbcType="VARCHAR"
+			property="userpwdkey" />
+		<result column="pwdmd" jdbcType="VARCHAR" property="pwdmd" />
+		<result column="pwdcld" jdbcType="VARCHAR" property="pwdcld" />
+		<result column="LoginTrueName" jdbcType="VARCHAR"
+			property="logintruename" />
+		<result column="LoginPower" jdbcType="VARCHAR"
+			property="loginpower" />
+		<result column="savantid" jdbcType="INTEGER"
+			property="savantid" />
+		<result column="savantdate" jdbcType="TIMESTAMP"
+			property="savantdate" />
+		<result column="savantsend" jdbcType="TIMESTAMP"
+			property="savantsend" />
+		<result column="savanttype" jdbcType="INTEGER"
+			property="savanttype" />
+		<result column="locktime" jdbcType="TIMESTAMP"
+			property="locktime" />
+		<result column="wronglogtimes" jdbcType="INTEGER"
+			property="wronglogtimes" />
+		<result column="bfloginName" jdbcType="VARCHAR"
+			property="bfloginname" />
+		<result column="bfloginPwd" jdbcType="VARCHAR"
+			property="bfloginpwd" />
+		<result column="xid" jdbcType="VARCHAR" property="xid" />
+		<result column="Roles" jdbcType="VARCHAR" property="roles" />
+		<result column="dwid" jdbcType="VARCHAR" property="dwid" />
+		<result column="dwmc" jdbcType="VARCHAR" property="dwmc" />
+		<result column="isPwdUpdate" jdbcType="VARCHAR"
+			property="ispwdupdate" />
+		<result column="isuseagain" jdbcType="VARCHAR"
+			property="isuseagain" />
+	</resultMap>
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from t_u_login
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cn.most.esp.user.entity.UserInfo"> 
+		insert into t_u_login (ID, LoginName, LoginPwd, userpwdkey, pwdmd, pwdcld, 
+		LoginTrueName, LoginPower, savantid, savantdate, savantsend, savanttype, 
+		locktime, wronglogtimes, bfloginName, bfloginPwd, xid, Roles, dwid, dwmc, 
+		isPwdUpdate, isuseagain) values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, 
+		#{loginpwd,jdbcType=VARCHAR}, #{userpwdkey,jdbcType=VARCHAR}, #{pwdmd,jdbcType=VARCHAR}, 
+		#{pwdcld,jdbcType=VARCHAR}, #{logintruename,jdbcType=VARCHAR}, #{loginpower,jdbcType=VARCHAR}, 
+		#{savantid,jdbcType=INTEGER}, #{savantdate,jdbcType=TIMESTAMP}, #{savantsend,jdbcType=TIMESTAMP}, 
+		#{savanttype,jdbcType=INTEGER}, #{locktime,jdbcType=TIMESTAMP}, #{wronglogtimes,jdbcType=INTEGER}, 
+		#{bfloginname,jdbcType=VARCHAR}, #{bfloginpwd,jdbcType=VARCHAR}, #{xid,jdbcType=VARCHAR}, 
+		#{roles,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR}, #{dwmc,jdbcType=VARCHAR}, 
+		#{ispwdupdate,jdbcType=VARCHAR}, #{isuseagain,jdbcType=VARCHAR}) </insert>
+	<!-- <insert id="insert"
+		parameterType="cn.most.esp.user.entity.UserInfo">
+		insert into t_u_login (ID, LoginName, pwdmd)
+		values(#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR},
+		#{pwdmd,jdbcType=VARCHAR})
+	</insert> -->
+	<update id="updateById"
+		parameterType="cn.most.esp.user.entity.UserInfo">
+		update t_u_login
+		<trim prefix="set" suffixOverrides=",">
+			<if test="loginname != null">LoginName = #{loginname,jdbcType=VARCHAR},</if>
+			<if test="pwdmd != null">pwdmd = #{pwdmd,jdbcType=VARCHAR},</if>
+			<if test="pwdcld != null">pwdcld = #{pwdcld,jdbcType=VARCHAR},</if>
+			<if test="loginpower != null">LoginPower = #{loginpower,jdbcType=VARCHAR},</if>
+		</trim>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getOneById" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select *
+		from t_u_login
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="getAll" resultMap="BaseResultMap">
+		select *
+		from
+		t_u_login
+	</select>
+
+	<select id="getUser" resultMap="BaseResultMap"
+		parameterType="cn.most.esp.user.entity.UserInfo">
+		select *
+		from t_u_login where
+		LoginName = #{loginname} and
+		pwdmd=#{pwdmd}
+	</select>
+</mapper>

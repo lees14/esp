@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.most.esp.log.dao.SysinfoDao">
+	<resultMap id="BaseResultMap"
+		type="cn.most.esp.log.entity.Sysinfo">
+		<result column="sid" jdbcType="INTEGER" property="sid" />
+		<result column="suid" jdbcType="VARCHAR" property="suid" />
+		<result column="outpid" jdbcType="INTEGER" property="outpid" />
+		<result column="saction" jdbcType="CHAR" property="saction" />
+		<result column="sip" jdbcType="VARCHAR" property="sip" />
+		<result column="scomputer" jdbcType="VARCHAR"
+			property="scomputer" />
+		<result column="Stag" jdbcType="CHAR" property="stag" />
+		<result column="Stime" jdbcType="TIMESTAMP" property="stime" />
+		<result column="slogname" jdbcType="VARCHAR"
+			property="slogname" />
+		<result column="scpmc" jdbcType="VARCHAR" property="scpmc" />
+	</resultMap>
+	<select id="getAll" resultMap="BaseResultMap">
+		select * from t_l_sysinfo
+	</select>
+
+	<select id="getList"
+		parameterType="cn.most.esp.log.entity.Sysinfo"
+		resultMap="BaseResultMap">
+		select * from t_l_sysinfo where 1=1
+		<if test="slogname != null">
+			and slogname = #{slogname}
+		</if>
+		<if test="slogname != null">
+			and sip = #{sip}
+		</if>
+		<if test="slogname != null">
+			and suid = #{suid}
+		</if>
+	</select>
+	<insert id="insert"
+		parameterType="cn.most.esp.log.entity.Sysinfo">
+		insert into t_l_sysinfo (sid, suid, outpid,
+		saction, sip, scomputer,
+		Stag, Stime, slogname,
+		scpmc)
+		values (#{sid,jdbcType=INTEGER}, #{suid,jdbcType=VARCHAR},
+		#{outpid,jdbcType=INTEGER},
+		#{saction,jdbcType=CHAR}, #{sip,jdbcType=VARCHAR}, #{scomputer,jdbcType=VARCHAR},
+		#{stag,jdbcType=CHAR}, #{stime,jdbcType=TIMESTAMP},
+		#{slogname,jdbcType=VARCHAR},
+		#{scpmc,jdbcType=VARCHAR})
+	</insert>
+</mapper>

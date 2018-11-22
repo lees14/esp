@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>用户信息</title>
+<script type="text/javaScript" th:src="@{/js/jquery-1.8.3.js}"></script>
+</head>
+<body>
+	<form id="userForm" th:object="${userInfo}" th:action="@{'/user/saveUser'}" method="post">
+		userName:<input type="text"  th:field=*{loginname}/>
+		pwdcld: <input type="text"  th:field=*{pwdcld}/>
+		loginpower: <input type="text"  th:field=*{loginpower}/>
+		<input type="hidden" th:field="*{id}"/>
+		<input id="queryButton" type="button" value="提交"  onclick="return fromQurey();"/>
+	</form>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#userForm").submit(function(e){
+				e.preventDefault(); //STOP default action
+				
+				$.ajax({
+					url:$("#userForm").attr("action"),
+					type:"post",
+					dataType:"json",
+					data:$('#userForm').serialize(),
+					success:function(data){
+						alert(data.msg);
+					}
+				})
+			})	
+		})
+		function fromQurey(){
+			$("#userForm").submit();
+		}
+	</script>
+	
+</body>
+</html>

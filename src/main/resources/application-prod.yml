@@ -1,0 +1,19 @@
+#logging:
+#  pattern :
+#        console : "%d - %msg%n"
+#  file: /logs/tomcat/test.log
+#  level:
+#      com.ls.test: debugspring:
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+server:
+  servlet:
+    context-path: /sell
+mybatis:
+  mapper-locations: mapper/*.xml

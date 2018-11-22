@@ -1,0 +1,52 @@
+logging:
+#  pattern :
+#        console : "%d - %msg%n"
+#  file: /logs/tomcat/test.log
+  level:
+      com.ls.entity.mapper: trace
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost/zjk?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+  
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false  # 关闭缓存，这样修改文件后不需要重新启动，缓存默认是开启的
+    prefix: classpath:/templates/
+    suffix: .html
+    
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+    timeout: 0
+    expire: 1800
+  http:
+    multipart:
+      max-file-size: 128M  
+      max-request-size: 128M
+server:
+  servlet:
+    context-path: /esp
+  #控制台显示 xml 的sql 语句
+mybatis:
+  mapper-locations: mapper/*.xml
+  
+file:
+  path: E:/lxzk/zjk/file/
+  
+  
+ 
+ 
+  
+  
+  

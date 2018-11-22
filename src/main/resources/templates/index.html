@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function tuichu(){
+		const baseUrl = [[${#servletContext.contextPath}]]/;
+		window.location=baseUrl+"/auth/logout";
+	}
+</script>
+</head>
+<body>
+	index
+	<a th:href="@{/auth/logout}" >退出</a>
+	<input type="button" value="退出" onclick="javaScript:tuichu();"/>
+	
+	<a th:href="@{/user/userList}" >列表</a>
+</body>
+</html>

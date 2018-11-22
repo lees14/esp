@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/auth/login}" th:method="post">
+	<table>
+		<tr>
+			<td>loginName:</td>
+			<td><input type="text"  name="username"/></td>
+		</tr>
+		<tr>
+			<td>passWord:</td>
+			<td><input type="text" name="password" /></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="登 录"/></td>
+		</tr>
+		
+	</table>
+	<input type="hidden" value="${_csrf.token}" name="${_csrf.parameterName}"/>
+</form>	
+</body>
+</html>
